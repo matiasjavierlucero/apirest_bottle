@@ -1,0 +1,42 @@
+{%extends 'templates/layout.html'%}
+{% block title %} Inicie Sesion {%endblock%}
+{% block body %} 
+<div class="container text-center m-auto">
+    <h3>Bienvenido {{data.Nombre}}</h3>
+    {%if data.Tipo==1%}
+    <h4>Aqui un listado de todas sus notas</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nota</th>
+                <th>Profesor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for nota in notas%}    
+            <tr>
+                <td>{{nota.nota}}</td>
+                <td>{{nota.usuariocarga.nombre}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    {%endif%}
+    {%if data.Tipo==2%}
+        <h4>Este modulo es solo para alumnos</h4>
+    {%endif%}
+</div>
+
+
+<script>
+    if ('{{session}}'=='ok'){
+        btnlogin=document.getElementById('login')
+        btnlogin.className += ' d-none'
+        btnregister=document.getElementById('register')
+        btnregister.className += ' d-none'
+
+        btnlogout=document.getElementById('logout')
+        btnlogout.classList.remove('d-none')
+    }
+</script>
+{%endblock%}

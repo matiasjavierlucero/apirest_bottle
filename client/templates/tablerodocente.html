@@ -1,0 +1,41 @@
+{%extends 'templates/layout.html'%}
+{% block title %} Inicie Sesion {%endblock%}
+{% block body %} 
+<div class="container text-center m-auto">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 text-center">
+            <form action="/guardarnota" method="post">
+                <label for="Alumno">Alumno</label>
+                <select name="Alumno" id="Alumno" class="form-control" required>
+                    {%for alumno in Alumnos.Alumnos.0 %}
+                    <option value="{{alumno.id}}">{{alumno.nombre}}</option>
+                    {%endfor%}
+                </select>
+                <label for="Nota">Nota</label>
+                <input type="number" name="Nota" class="form-control" required>
+                <br>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+            <a href="/misnotasdocente" type="button" class="btn btn-info"> Ver Notas</a>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+
+<script>
+    if ('{{session}}'=='ok'){
+        btnlogin=document.getElementById('login')
+        btnlogin.className += ' d-none'
+        btnregister=document.getElementById('register')
+        btnregister.className += ' d-none'
+
+        btnlogout=document.getElementById('logout')
+        btnlogout.classList.remove('d-none')
+    }
+</script>
+{%endblock%}
+
+
+ 

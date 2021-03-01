@@ -1,0 +1,49 @@
+{%extends 'templates/layout.html'%}
+{% block title %} Inicie Sesion {%endblock%}
+{% block body %} 
+<div class="container text-center m-auto">
+    <div class="row">
+        <div class="col-4">
+            <a href="/tablerodocente">
+                Volver
+            </a>
+        </div>
+        <div class="col-4 text-center">
+           <h5>Lista de notas</h5>
+            <table class="table table-striped ">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Alumno</th>
+                        <th>Nota</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        {%for nota in Notas%}    
+                        <tr>
+                            <td>{{nota.usuarionota.nombre}}</td>
+                            <td>{{nota.nota}}</td>
+                        </tr>
+                        {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+
+<script>
+    if ('{{session}}'=='ok'){
+        btnlogin=document.getElementById('login')
+        btnlogin.className += ' d-none'
+        btnregister=document.getElementById('register')
+        btnregister.className += ' d-none'
+
+        btnlogout=document.getElementById('logout')
+        btnlogout.classList.remove('d-none')
+    }
+</script>
+{%endblock%}
+
+
+ 
