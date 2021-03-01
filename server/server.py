@@ -52,11 +52,12 @@ def login_user():
 def register():
     nombre = request.forms.get("usuario")  #Obtengo los datos del body
     password=request.forms.get("password")
+    tipo=request.forms.get("tipo")
     query=Usuario.select().where(Usuario.nombre==nombre).first()
     if query:
         return ({'register':'False'})
     else:
-        user = Usuario(nombre=nombre,password=password,tipo=1)
+        user = Usuario(nombre=nombre,password=password,tipo=tipo)
         user.save()
         return ({'register':'True'})
 

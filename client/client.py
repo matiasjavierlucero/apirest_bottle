@@ -52,8 +52,9 @@ def login_post():
 def register_post():
     usuario=request.forms['usuario']
     password=request.forms['password']
+    tipo=request.forms['tipo']
 
-    register_data = {'usuario': usuario, 'password': password}    
+    register_data = {'usuario': usuario, 'password': password,'tipo':tipo}    
     url = "http://127.0.0.1:8000/register"
     headers = {
     'content-type': "application/json",
@@ -64,7 +65,7 @@ def register_post():
     if response['register']=='False':
         return {'mensaje':'Seleccione otro nombre'}
     else:
-        return index()
+        return login()
 
 @get('/mitablero')
 @jinja2_view('templates/mitablero.html')
